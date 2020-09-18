@@ -1,0 +1,27 @@
+body{
+    background: #544a7d;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffd452, #544a7d);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffd452, #544a7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+#boardSpace {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    background: #7f7fd5; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 500px;
+    height: 500px;
+}
+.cubeSpace {
+    text-align: center;
+    border: solid 1px black;
+    font-size: 80px;
+    line-height: 170px;
+}
+
+.cubeSpace:hover{
+    background-color: pink;
+}
