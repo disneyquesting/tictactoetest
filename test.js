@@ -1,6 +1,5 @@
 const Player = function (name, position) {
   let playerIcon = "";
-  const welcomeMessage = () => console.log("Name is: " + name);
   const _playerSymbol = () => {
     if (position === 1) {
       playerIcon = "X";
@@ -9,24 +8,25 @@ const Player = function (name, position) {
     }
   };
   _playerSymbol();
-  return {name,  welcomeMessage, playerIcon };
+  return { name, playerIcon };
 };
 
 const playerOne = Player("Tom", 1);
 const playerTwo = Player("Pawl", 2);
 
-playerOne.welcomeMessage();
-playerTwo.welcomeMessage();
+let playerOneScore = 0;
+let playerTwoScore = 0;
 
-console.log(playerOne.name + "'s icon is: " + playerOne.playerIcon);
-console.log(playerTwo.name + "'s icon is: " + playerTwo.playerIcon);
-
+let turnNumber = 0;
+const resetButtons = document.getElementById("resetButton");
+const playerOneScoreLabel = document.getElementById("p1Score");
+const playerTwoScoreLabel = document.getElementById("p2Score");
 
 const gameBoard = (function () {
   const boardArr = ["", "", "", "", "", "", "", "", ""];
   const boardSpace = document.getElementById("boardSpace");
 
-  function _displayBoard(value, index, array) {
+  function _displayBoard(value, index) {
     boardSpace.innerHTML += `<div class="cubeSpace" id="${index}">${value}</div>`;
   }
 
@@ -34,13 +34,178 @@ const gameBoard = (function () {
     boardArr.forEach(_displayBoard);
   };
 
-  const _gameLogic = function (i) {
-    boardArr[i] = playerTwo.playerIcon;
-    document.getElementById(i).innerText = playerTwo.playerIcon;
+  const _gameLogic = function (i, turn) {
+    turnNumberFunc(i);
+    winnerFunction();
+    playerOneScoreLabel.innerText = playerOneScore;
+    playerTwoScoreLabel.innerText = playerTwoScore;
   };
 
+  const turnNumberFunc = function (i) {
+    resetButtons.style.display = "inline";
+    if (turnNumber == 1) {
+      if (document.getElementById(i).innerText != playerOne.playerIcon) {
+        boardArr[i] = playerTwo.playerIcon;
+        document.getElementById(i).innerText = playerTwo.playerIcon;
+        turnNumber--;
+      } else {
+        alert("This spot exists");
+      }
+    } else if (turnNumber == 0) {
+      if (document.getElementById(i).innerText != playerTwo.playerIcon) {
+        boardArr[i] = playerOne.playerIcon;
+        document.getElementById(i).innerText = playerOne.playerIcon;
+        turnNumber++;
+      } else {
+        alert("This spot exists");
+      }
+    }
+    return turnNumber;
+  };
+
+  const winnerFunction = function () {
+    if (
+      boardArr[0] === playerOne.playerIcon &&
+      boardArr[1] === playerOne.playerIcon &&
+      boardArr[2] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[0] === playerOne.playerIcon &&
+      boardArr[3] === playerOne.playerIcon &&
+      boardArr[6] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[0] === playerOne.playerIcon &&
+      boardArr[4] === playerOne.playerIcon &&
+      boardArr[8] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[1] === playerOne.playerIcon &&
+      boardArr[4] === playerOne.playerIcon &&
+      boardArr[7] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[2] === playerOne.playerIcon &&
+      boardArr[5] === playerOne.playerIcon &&
+      boardArr[8] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[3] === playerOne.playerIcon &&
+      boardArr[4] === playerOne.playerIcon &&
+      boardArr[5] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[6] === playerOne.playerIcon &&
+      boardArr[7] === playerOne.playerIcon &&
+      boardArr[8] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[2] === playerOne.playerIcon &&
+      boardArr[4] === playerOne.playerIcon &&
+      boardArr[6] === playerOne.playerIcon
+    ) {
+      alert(playerOne.name + " wins!");
+      resetButton();
+      playerOneScore++;
+    } else if (
+      boardArr[0] === playerTwo.playerIcon &&
+      boardArr[1] === playerTwo.playerIcon &&
+      boardArr[2] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    } else if (
+      boardArr[0] === playerTwo.playerIcon &&
+      boardArr[3] === playerTwo.playerIcon &&
+      boardArr[6] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    } else if (
+      boardArr[0] === playerTwo.playerIcon &&
+      boardArr[4] === playerTwo.playerIcon &&
+      boardArr[8] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    } else if (
+      boardArr[1] === playerTwo.playerIcon &&
+      boardArr[4] === playerTwo.playerIcon &&
+      boardArr[7] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    } else if (
+      boardArr[2] === playerTwo.playerIcon &&
+      boardArr[5] === playerTwo.playerIcon &&
+      boardArr[8] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    } else if (
+      boardArr[3] === playerTwo.playerIcon &&
+      boardArr[4] === playerTwo.playerIcon &&
+      boardArr[5] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    } else if (
+      boardArr[6] === playerTwo.playerIcon &&
+      boardArr[7] === playerTwo.playerIcon &&
+      boardArr[8] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    } else if (
+      boardArr[2] === playerTwo.playerIcon &&
+      boardArr[4] === playerTwo.playerIcon &&
+      boardArr[6] === playerTwo.playerIcon
+    ) {
+      alert(playerTwo.name + " wins!");
+      resetButton();
+      playerTwoScore++;
+    }
+  };
+  const resetButton = function (index, value) {
+    for (var j = 0; j < boardArr.length; j++) {
+      boardArr[j] = "";
+      document.getElementById([j]).innerHTML = "";
+      turnNumber = 0;
+    }
+
+    resetButtons.style.display = "none";
+  };
 
   const assignPieces = function () {
+    console.log(turnNumber);
     const pieceOne = document.getElementById("0");
     const pieceTwo = document.getElementById("1");
     const pieceThree = document.getElementById("2");
@@ -63,9 +228,10 @@ const gameBoard = (function () {
     pieceNine.addEventListener("click", () => _gameLogic(pieceNine.id));
   };
 
- 
-  return { createBoard, assignPieces };
+  return { createBoard, assignPieces, resetButton };
 })();
 
 gameBoard.createBoard();
 gameBoard.assignPieces();
+
+resetButtons.addEventListener("click", () => gameBoard.resetButton());
